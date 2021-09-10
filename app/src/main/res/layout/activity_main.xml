@@ -3,16 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    tools:context=".MainActivity"
+    >
 
     <TextView
+        android:id="@+id/greetingsTextView"
+        style="@style/TextAppearance.MaterialComponents.Headline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Hello!"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Want to get to know countries around the 🌎?"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greetingsTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/countryTextView"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/card_background"
+        android:drawableStart="@drawable/ic_arrow_drop_down_circle_24"
+        android:drawablePadding="8dp"
+        android:padding="10dp"
+        android:text="Pick a country"
+        app:layout_constraintBottom_toTopOf="@+id/mainCta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mainCta"
+        style="@style/Widget.CountryInfo.Button.UnelevatedButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Let's go!"
+        android:drawableStart="@drawable/ic_arrow_drop_down_circle_24"
+        android:drawablePadding="8dp"
+        android:layout_margin="16dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryTextView"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
