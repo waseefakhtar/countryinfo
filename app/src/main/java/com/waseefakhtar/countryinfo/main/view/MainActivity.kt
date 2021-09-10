@@ -1,4 +1,4 @@
-package com.waseefakhtar.countryinfo
+package com.waseefakhtar.countryinfo.main.view
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.waseefakhtar.countryinfo.R
+import com.waseefakhtar.countryinfo.countrylist.view.CountryListActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,12 +26,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        Log.i("MainActivity", "openCountryList")
+        supportActionBar?.hide()
         countryPickerView = findViewById(R.id.countryPickerView)
-        countryPickerView.setOnClickListener {
-            Log.i("MainActivity", "1 openCountryList")
-            openCountryList()
-        }
+        countryPickerView.setOnClickListener { openCountryList() }
     }
 
     private fun registerForActivityResult() {
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openCountryList() {
-        Log.i("MainActivity", "openCountryList")
         activityResult.launch(Intent(this, CountryListActivity::class.java))
     }
 }

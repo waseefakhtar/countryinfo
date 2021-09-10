@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Countryinfo">
         <activity
-            android:name=".CountryListActivity"
+            android:name=".countrylist.view.CountryListActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
