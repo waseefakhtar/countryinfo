@@ -35,7 +35,7 @@
         />
 
     <TextView
-        android:id="@+id/countryTextView"
+        android:id="@+id/countryPickerView"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,6 +47,7 @@
         android:drawablePadding="8dp"
         android:padding="10dp"
         android:text="Pick a country"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/mainCta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +59,10 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Let's go!"
-        android:drawableStart="@drawable/ic_arrow_drop_down_circle_24"
-        android:drawablePadding="8dp"
         android:layout_margin="16dp"
-        android:padding="10dp"
+        android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryTextView"
+        app:layout_constraintTop_toBottomOf="@+id/countryPickerView"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

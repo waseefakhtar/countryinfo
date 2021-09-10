@@ -12,7 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
 
-        <item name="rippleColor">@color/teal_200</item>
+        <item name="android:textColorPrimary">@color/grey</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="rippleColor">@color/grey</item>
     </style>
 
     <style name="Widget.CountryInfo.Button.UnelevatedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
