@@ -3,13 +3,15 @@ package com.waseefakhtar.countryinfo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.waseefakhtar.countryinfo.countrylist.viewmodel.CountryListViewModel
+import dagger.Lazy
+import javax.inject.Inject
 
-class ViewModelFactory : ViewModelProvider.Factory {
+class ViewModelFactory<VM : ViewModel> @Inject constructor(
+    private val viewModel: Lazy<VM>
+) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CountryListViewModel::class.java)) {
-            return CountryListViewModel() as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return viewModel.get() as T
     }
 }
