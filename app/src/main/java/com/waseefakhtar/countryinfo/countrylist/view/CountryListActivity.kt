@@ -1,5 +1,7 @@
 package com.waseefakhtar.countryinfo.countrylist.view
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import com.waseefakhtar.countryinfo.ViewModelFactory
 import com.waseefakhtar.countryinfo.countrylist.adapter.CountriesAdapter
 import com.waseefakhtar.countryinfo.countrylist.viewmodel.CountryListViewModel
 import com.waseefakhtar.countryinfo.databinding.ActivityCountryListBinding
+import com.waseefakhtar.countryinfo.main.view.SELECTED_COUNTRY
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,8 +27,6 @@ class CountryListActivity : AppCompatActivity() {
     private lateinit var viewModel: CountryListViewModel
     @Inject lateinit var vmFactory: ViewModelFactory<CountryListViewModel>
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCountryListBinding.inflate(layoutInflater)
@@ -37,7 +38,10 @@ class CountryListActivity : AppCompatActivity() {
     }
 
     private fun onCountryClick(country: String) {
-        Log.i("onCountryClick", "onCountryClick is run: ${country}")
+        val intent = Intent()
+        intent.putExtra(SELECTED_COUNTRY, country)
+        setResult(RESULT_OK, intent)
+        onBackPressed()
     }
 
     private fun initViewModel() {

@@ -11,17 +11,23 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.waseefakhtar.countryinfo.R
 import com.waseefakhtar.countryinfo.countrylist.view.CountryListActivity
+import com.waseefakhtar.countryinfo.databinding.ActivityCountryListBinding
+import com.waseefakhtar.countryinfo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
+const val SELECTED_COUNTRY = "arg_selected_country"
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var countryPickerView: TextView
-
     private lateinit var activityResult: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         registerForActivityResult()
         initViews()
     }
@@ -35,7 +41,10 @@ class MainActivity : AppCompatActivity() {
     private fun registerForActivityResult() {
         activityResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
-                //  you will get result here in result.data
+                result.data?.let {
+                    val clickedCountry = it.getStringExtra(SELECTED_COUNTRY)
+                    binding.countryPickerView.text = clickedCountry
+                }
             }
         }
     }
