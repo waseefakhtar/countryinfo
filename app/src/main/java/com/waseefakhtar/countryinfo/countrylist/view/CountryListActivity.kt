@@ -2,9 +2,14 @@ package com.waseefakhtar.countryinfo.countrylist.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.waseefakhtar.countryinfo.R
 import com.waseefakhtar.countryinfo.ViewModelFactory
+import com.waseefakhtar.countryinfo.countrylist.adapter.CountriesAdapter
 import com.waseefakhtar.countryinfo.countrylist.viewmodel.CountryListViewModel
 import com.waseefakhtar.countryinfo.databinding.ActivityCountryListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,24 +18,30 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CountryListActivity : AppCompatActivity() {
 
+    private val adapter: CountriesAdapter by lazy { CountriesAdapter(layoutInflater, ::onCountryClick) }
+
     private lateinit var binding: ActivityCountryListBinding
-    @Inject lateinit var vmFactory: ViewModelFactory<CountryListViewModel>
     private lateinit var viewModel: CountryListViewModel
+    @Inject lateinit var vmFactory: ViewModelFactory<CountryListViewModel>
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initBinding()
-        setContentView(R.layout.activity_country_list)
+        binding = ActivityCountryListBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         initViewModel()
         initViews()
+        onObserve()
+    }
+
+    private fun onCountryClick(country: String) {
+        Log.i("onCountryClick", "onCountryClick is run: ${country}")
     }
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this, vmFactory).get(CountryListViewModel::class.java)
-    }
-
-    private fun initBinding() {
-        binding = ActivityCountryListBinding.inflate(layoutInflater)
     }
 
     private fun initViews() {
@@ -38,6 +49,25 @@ class CountryListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.show()
 
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun onObserve() {
+        viewModel.countriesState().observe(this, { countriesState -> refreshState(countriesState) })
+    }
+
+    private fun refreshState(countriesState: CountryListViewModel.CountriesState) {
+        when (countriesState) {
+            is CountryListViewModel.CountriesState.Loading -> binding.progressBar.visibility = View.VISIBLE
+            is CountryListViewModel.CountriesState.Success -> {
+                binding.progressBar.visibility = View.GONE
+                adapter.add(countriesState.countries)
+            }
+            is CountryListViewModel.CountriesState.Error -> {
+                Toast.makeText(this, countriesState.message, Toast.LENGTH_LONG)
+                finish()
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

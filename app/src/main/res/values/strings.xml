@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">countryinfo</string>
     <string name="pick_country">Pick a country</string>
+    <string name="something_went_wrong">Oops! Something went wrong, please try again in a bit.</string>
 </resources>
