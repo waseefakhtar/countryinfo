@@ -1,6 +1,7 @@
 package com.waseefakhtar.countryinfo.countrylist.usecase
 
 import com.waseefakhtar.countryinfo.api.CountriesAPIClient
+import com.waseefakhtar.countryinfo.api.CountryNameResponse
 import com.waseefakhtar.countryinfo.coroutines.DispatcherProvider
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -13,7 +14,9 @@ class GetAllCountriesUseCase @Inject constructor(
     @Throws(Throwable::class)
     suspend fun getAllCountries(): List<String> {
         return withContext(dispatcherProvider.io()) {
-            countriesAPIClient.getAllCountries()
+            countriesAPIClient.getAllCountries().toNames()
         }
     }
+
+    private fun List<CountryNameResponse>.toNames(): List<String> = this.map { it.name }
 }

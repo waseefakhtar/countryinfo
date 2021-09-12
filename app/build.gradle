@@ -41,6 +41,7 @@ dependencies {
     def lifecycle_version = "2.3.1"
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.9.1"
+    def sharp_version = "1.1.0"
 
     implementation "javax.inject:javax.inject:1@jar"
 
@@ -62,6 +63,9 @@ dependencies {
 
     // OkHttp
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Sharp
+    implementation "com.pixplicity.sharp:library:$sharp_version"
 
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
