@@ -68,7 +68,7 @@ class CountryListActivity : AppCompatActivity() {
                 adapter.add(countriesState.countries)
             }
             is CountryListViewModel.CountriesState.Error -> {
-                Toast.makeText(this, countriesState.message, Toast.LENGTH_LONG)
+                Toast.makeText(this, countriesState.message, Toast.LENGTH_LONG).show()
                 finish()
             }
         }

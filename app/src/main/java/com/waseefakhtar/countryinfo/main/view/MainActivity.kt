@@ -5,22 +5,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.waseefakhtar.countryinfo.R
+import com.waseefakhtar.countryinfo.countrydetail.view.CountryDetailActivity
 import com.waseefakhtar.countryinfo.countrylist.view.CountryListActivity
-import com.waseefakhtar.countryinfo.databinding.ActivityCountryListBinding
 import com.waseefakhtar.countryinfo.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 const val SELECTED_COUNTRY = "arg_selected_country"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var countryPickerView: TextView
     private lateinit var activityResult: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +32,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         supportActionBar?.hide()
-        countryPickerView = findViewById(R.id.countryPickerView)
-        countryPickerView.setOnClickListener { openCountryList() }
+        binding.countryPickerView.setOnClickListener { openCountryList() }
+        binding.mainCta.setOnClickListener {
+            val countryPicked = binding.countryPickerView.text as String
+            when (countryPicked == getString(R.string.pick_country)) {
+                true -> Toast.makeText(this, R.string.select_country, Toast.LENGTH_LONG).show()
+                false -> startActivity(CountryDetailActivity.createIntent(this, countryPicked))
+            }
+        }
     }
 
     private fun registerForActivityResult() {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.waseefakhtar.countryinfo">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".CountryInfoApplication"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Countryinfo">
+        <activity
+            android:name=".countrydetail.view.CountryDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".countrylist.view.CountryListActivity"
             android:exported="true" />
