@@ -2,6 +2,7 @@ package com.waseefakhtar.countryinfo.countrydetail.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.reset
 import com.scope.MainCoroutineScopeRule
@@ -15,6 +16,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import java.lang.RuntimeException
 import java.util.concurrent.ThreadLocalRandom
 
 class GetCountryDetailUseCaseTest {
@@ -44,6 +46,24 @@ class GetCountryDetailUseCaseTest {
         val result = getCountryDetailUseCase.getCountryDetail(country)
 
         result.`should equal`(countryDetailResponse.toCountryDetail())
+        Verify on countriesAPIClient that countriesAPIClient.getCountryDetail(country) was called
+        `Verify no further interactions` on countriesAPIClient
+    }
+
+    @Test
+    fun `Should throw error when trying to get country detail`() = mainCoroutineScopeRule.runBlockingTest {
+        val country = randomString()
+        val exception = RuntimeException()
+        When calling countriesAPIClient.getCountryDetail(country) doThrow exception
+
+        val result = try {
+            getCountryDetailUseCase.getCountryDetail(country)
+            true
+        } catch (throwable: Throwable) {
+            false
+        }
+
+        result.`should be false`()
         Verify on countriesAPIClient that countriesAPIClient.getCountryDetail(country) was called
         `Verify no further interactions` on countriesAPIClient
     }
