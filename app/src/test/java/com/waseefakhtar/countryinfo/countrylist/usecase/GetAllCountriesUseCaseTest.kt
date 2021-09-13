@@ -8,6 +8,7 @@ import com.scope.MainCoroutineScopeRule
 import com.waseefakhtar.countryinfo.api.CountriesAPIClient
 import com.waseefakhtar.countryinfo.api.CountryNameResponse
 import com.waseefakhtar.countryinfo.coroutines.DispatcherProvider
+import com.waseefakhtar.countryinfo.randomString
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.*
 import org.junit.Before
@@ -15,7 +16,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import java.lang.RuntimeException
-import java.util.concurrent.ThreadLocalRandom
 
 class GetAllCountriesUseCaseTest  {
 
@@ -63,13 +63,6 @@ class GetAllCountriesUseCaseTest  {
         Verify on countriesAPIClient that countriesAPIClient.getAllCountries() was called
         `Verify no further interactions` on countriesAPIClient
     }
-
-    private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-    private val random
-        get() = ThreadLocalRandom.current()
-    private fun randomString(size: Int = 20): String = (0..size)
-        .map { charPool[random.nextInt(0, charPool.size)] }
-        .joinToString("")
 
     private fun createCountryNameResponseList(): List<CountryNameResponse> =
         listOf(
