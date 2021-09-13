@@ -4,4 +4,6 @@
     <string name="something_went_wrong">Oops! Something went wrong, please try again in a bit.</string>
     <string name="lets_go">Let\'s go!</string>
     <string name="select_country">Please select a country first</string>
+    <string name="hello">Hello!</string>
+    <string name="get_to_know_countries">Want to get to know countries around the 🌎?</string>
 </resources>

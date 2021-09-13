@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_height="match_parent"
     tools:context=".main.view.MainActivity"
     >
 
@@ -13,11 +12,11 @@
         style="@style/TextAppearance.MaterialComponents.Headline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello!"
+        android:text="@string/hello"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
         />
 
     <TextView
@@ -25,12 +24,13 @@
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Want to get to know countries around the 🌎?"
+        android:text="@string/get_to_know_countries"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetingsTextView"
+        app:layout_constraintBottom_toTopOf="@+id/countryPickerView"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
@@ -43,26 +43,32 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/card_background"
+        android:clickable="true"
         android:drawableStart="@drawable/ic_arrow_drop_down_circle_24"
         android:drawablePadding="8dp"
         android:padding="10dp"
         android:text="@string/pick_country"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/mainCta"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/guideline" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mainCta"
         style="@style/Widget.CountryInfo.Button.UnelevatedButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="@string/lets_go"
         android:layout_margin="16dp"
         android:padding="16dp"
+        android:text="@string/lets_go"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryPickerView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/countryPickerView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
