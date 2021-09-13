@@ -47,6 +47,7 @@ dependencies {
     def kluent_version = "1.49"
     def mockito_kotlin_version = "2.1.0"
     def mockito_version = "3.8.0"
+    def fastscroll_version = "1.1.7"
 
     implementation "javax.inject:javax.inject:1@jar"
 
@@ -72,6 +73,9 @@ dependencies {
 
     // Sharp
     implementation "com.pixplicity.sharp:library:$sharp_version"
+
+    // FastScroll
+    implementation "me.zhanghai.android.fastscroll:library:$fastscroll_version"
 
     // Core Testing
     testImplementation "androidx.arch.core:core-testing:$core_testing_version"

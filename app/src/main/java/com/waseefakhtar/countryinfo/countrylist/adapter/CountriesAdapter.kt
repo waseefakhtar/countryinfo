@@ -21,6 +21,8 @@ class CountriesAdapter(
         this.countries.addAll(countries)
         notifyDataSetChanged()
     }
+
+    fun getPopupText(position: Int): String = countries[position].first().toString()
 }
 
 class CountryViewHolder(

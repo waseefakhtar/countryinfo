@@ -16,6 +16,8 @@ import com.waseefakhtar.countryinfo.countrylist.viewmodel.CountryListViewModel
 import com.waseefakhtar.countryinfo.databinding.ActivityCountryListBinding
 import com.waseefakhtar.countryinfo.main.view.SELECTED_COUNTRY
 import dagger.hilt.android.AndroidEntryPoint
+import me.zhanghai.android.fastscroll.FastScrollerBuilder
+import me.zhanghai.android.fastscroll.PopupTextProvider
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -54,6 +56,9 @@ class CountryListActivity : AppCompatActivity() {
         supportActionBar?.show()
 
         binding.recyclerView.adapter = adapter
+        FastScrollerBuilder(binding.recyclerView)
+            .setPopupTextProvider { adapter.getPopupText(it) }
+            .build()
     }
 
     private fun onObserve() {
