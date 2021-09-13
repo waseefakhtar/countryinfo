@@ -7,10 +7,10 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.reset
 import com.scope.MainCoroutineScopeRule
 import com.waseefakhtar.countryinfo.api.CountriesAPIClient
-import com.waseefakhtar.countryinfo.api.CountryDetailResponse
 import com.waseefakhtar.countryinfo.coroutines.DispatcherProvider
-import com.waseefakhtar.countryinfo.data.CountryDetail
+import com.waseefakhtar.countryinfo.createCountryDetailResponse
 import com.waseefakhtar.countryinfo.randomString
+import com.waseefakhtar.countryinfo.toCountryDetail
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.*
 import org.junit.Before
@@ -67,24 +67,4 @@ class GetCountryDetailUseCaseTest {
         Verify on countriesAPIClient that countriesAPIClient.getCountryDetail(country) was called
         `Verify no further interactions` on countriesAPIClient
     }
-
-    private fun createCountryDetailResponse() =
-        CountryDetailResponse(
-            name = randomString(),
-            capital = randomString(),
-            population = randomString(),
-            callingCodes = listOf(randomString()),
-            timezones = listOf(randomString()),
-            flag = randomString()
-        )
-
-    private fun CountryDetailResponse.toCountryDetail(): CountryDetail =
-        CountryDetail(
-            name = name,
-            capital = capital,
-            population = population,
-            callingCodes = callingCodes.joinToString(", "),
-            timezones = timezones.joinToString(", "),
-            flag = flag
-        )
 }

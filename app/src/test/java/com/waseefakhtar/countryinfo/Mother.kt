@@ -1,6 +1,8 @@
 package com.waseefakhtar.countryinfo
 
+import com.waseefakhtar.countryinfo.api.CountryDetailResponse
 import com.waseefakhtar.countryinfo.api.CountryNameResponse
+import com.waseefakhtar.countryinfo.data.CountryDetail
 import java.util.concurrent.ThreadLocalRandom
 
 private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
@@ -19,3 +21,23 @@ fun createCountryNameResponseList(): List<CountryNameResponse> =
     )
 
 fun List<CountryNameResponse>.toCountries(): List<String> = map { it.name }
+
+fun createCountryDetailResponse() =
+    CountryDetailResponse(
+        name = randomString(),
+        capital = randomString(),
+        population = randomString(),
+        callingCodes = listOf(randomString()),
+        timezones = listOf(randomString()),
+        flag = randomString()
+    )
+
+fun CountryDetailResponse.toCountryDetail(): CountryDetail =
+    CountryDetail(
+        name = name,
+        capital = capital,
+        population = population,
+        callingCodes = callingCodes.joinToString(", "),
+        timezones = timezones.joinToString(", "),
+        flag = flag
+    )
