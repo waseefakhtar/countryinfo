@@ -16,7 +16,7 @@ class CountryListViewModel @Inject constructor(
     fun countriesState(): LiveData<CountriesState> = countriesState
     private val countriesState: MutableLiveData<CountriesState> = MutableLiveData()
 
-    init {
+    fun onLoad() {
         countriesState.value = CountriesState.Loading
         viewModelScope.launch {
             try {

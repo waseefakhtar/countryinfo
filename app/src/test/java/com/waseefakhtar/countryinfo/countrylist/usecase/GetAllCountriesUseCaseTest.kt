@@ -8,7 +8,9 @@ import com.scope.MainCoroutineScopeRule
 import com.waseefakhtar.countryinfo.api.CountriesAPIClient
 import com.waseefakhtar.countryinfo.api.CountryNameResponse
 import com.waseefakhtar.countryinfo.coroutines.DispatcherProvider
+import com.waseefakhtar.countryinfo.createCountryNameResponseList
 import com.waseefakhtar.countryinfo.randomString
+import com.waseefakhtar.countryinfo.toCountries
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.*
 import org.junit.Before
@@ -63,13 +65,4 @@ class GetAllCountriesUseCaseTest  {
         Verify on countriesAPIClient that countriesAPIClient.getAllCountries() was called
         `Verify no further interactions` on countriesAPIClient
     }
-
-    private fun createCountryNameResponseList(): List<CountryNameResponse> =
-        listOf(
-            CountryNameResponse(
-                name = randomString()
-            )
-        )
-
-    private fun List<CountryNameResponse>.toCountries(): List<String> = map { it.name }
 }

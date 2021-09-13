@@ -63,6 +63,7 @@ class CountryListActivity : AppCompatActivity() {
 
     private fun onObserve() {
         viewModel.countriesState().observe(this, { countriesState -> refreshState(countriesState) })
+        viewModel.onLoad()
     }
 
     private fun refreshState(countriesState: CountryListViewModel.CountriesState) {
