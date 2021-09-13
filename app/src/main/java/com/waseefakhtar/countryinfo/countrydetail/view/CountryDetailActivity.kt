@@ -79,12 +79,14 @@ class CountryDetailActivity : AppCompatActivity() {
 
     private fun populateViews(countryDetail: CountryDetail) {
         with(binding) {
-            binding.progressBar.visibility = View.GONE
+            progressBar.visibility = View.GONE
 
-            binding.capitalValue.text = countryDetail.capital
-            binding.populationValue.text = countryDetail.population
+            capitalValue.text = countryDetail.capital
+            populationValue.text = countryDetail.population
+            callingCodesValue.text = countryDetail.callingCodes
+            timezonesValue.text = countryDetail.timezones
 
-            Utils.fetchSvg(this@CountryDetailActivity, countryDetail.flag, binding.imageView)
+            Utils.fetchSvg(this@CountryDetailActivity, countryDetail.flag, imageView)
         }
 
     }

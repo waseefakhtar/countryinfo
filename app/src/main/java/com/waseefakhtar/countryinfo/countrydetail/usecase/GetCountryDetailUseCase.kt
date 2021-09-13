@@ -25,6 +25,8 @@ class GetCountryDetailUseCase @Inject constructor(
             name = name,
             capital = capital,
             population = population,
+            callingCodes = callingCodes.joinToString(", "),
+            timezones = timezones.joinToString(", "),
             flag = flag
         )
 

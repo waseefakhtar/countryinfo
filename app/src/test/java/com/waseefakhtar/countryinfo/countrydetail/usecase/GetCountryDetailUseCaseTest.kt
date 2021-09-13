@@ -73,6 +73,8 @@ class GetCountryDetailUseCaseTest {
             name = randomString(),
             capital = randomString(),
             population = randomString(),
+            callingCodes = listOf(randomString()),
+            timezones = listOf(randomString()),
             flag = randomString()
         )
 
@@ -81,6 +83,8 @@ class GetCountryDetailUseCaseTest {
             name = name,
             capital = capital,
             population = population,
+            callingCodes = callingCodes.joinToString(", "),
+            timezones = timezones.joinToString(", "),
             flag = flag
         )
 }

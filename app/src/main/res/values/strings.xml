@@ -6,4 +6,8 @@
     <string name="select_country">Please select a country first</string>
     <string name="hello">Hello!</string>
     <string name="get_to_know_countries">Want to get to know countries around the 🌎?</string>
+    <string name="calling_codes">Calling Codes</string>
+    <string name="population">Population</string>
+    <string name="capital">Capital</string>
+    <string name="timezones">Timezones</string>
 </resources>
